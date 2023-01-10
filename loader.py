@@ -2,11 +2,13 @@ import PIL
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 import torch.utils.data
+from PIL import ImageFile
 
 
 normalize = transforms.Normalize(0.5, 0.5)
 img_size = 224
 batch_size = 32
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 def get_train_loader(train_dir):
