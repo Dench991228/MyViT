@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 
 class PreNorm(nn.Module):
@@ -144,5 +145,7 @@ class OutputLayer(nn.Module):
             Scaling Vision Transformer: https://arxiv.org/abs/2106.04560
             """
             x = torch.mean(x, dim=1)
-
-        return self.net(x)
+        print(x.shape)
+        x = self.net(x)
+        x = F.softmax(x, dim=1)
+        return x
