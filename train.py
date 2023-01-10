@@ -28,7 +28,7 @@ def adjust_learning_rate(optimizer, epoch, args):
 def train_one_epoch(model, optimizer, criterion, train_loader):
     model.train()
     avg_loss = 0
-    for idx, (images, targets) in tqdm(enumerate(train_loader)):
+    for idx, (images, targets) in enumerate(train_loader):
         images = images.to(device)
         targets = targets.to(device)
         outputs = model(images)
@@ -36,7 +36,7 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
-        print(loss.cpu())
+        print(f"Batch {idx} loss {float(loss.cpu())}")
         optimizer.step()
         avg_loss += loss
     avg_loss /= len(train_loader)
@@ -74,4 +74,4 @@ if __name__ == '__main__':
     for epoch in range(count_epochs):
         print(f"Epoch number {epoch}")
         train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "/train"))
-        validation(model, criterion, get_val_loader(data_dir + "./val"))
+        # validation(model, criterion, get_val_loader(data_dir + "./val"))
