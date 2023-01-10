@@ -145,6 +145,5 @@ class OutputLayer(nn.Module):
             Scaling Vision Transformer: https://arxiv.org/abs/2106.04560
             """
             x = torch.mean(x, dim=1)
-        print(x.shape)
         x = self.net(x)
         return x

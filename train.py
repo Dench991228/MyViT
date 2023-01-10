@@ -36,6 +36,7 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
+        print(loss)
         optimizer.step()
         avg_loss += loss
     avg_loss /= len(train_loader)
@@ -52,7 +53,6 @@ def validation(model, criterion, val_loader):
             outputs = model(images)
             outputs = f.softmax(outputs, dim=1)
             loss = criterion(outputs, targets)
-            print(loss)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
