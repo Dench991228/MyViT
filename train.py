@@ -75,5 +75,6 @@ if __name__ == '__main__':
     for epoch in range(count_epochs):
         print(f"Epoch number {epoch}")
         train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "/train"))
+        adjust_learning_rate(optimizer, epoch, args)
         # validation(model, criterion, get_val_loader(data_dir + "./val"))
     log.close()
