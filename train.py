@@ -40,6 +40,22 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
     print(f"Train Loss: {avg_loss}")
 
 
+def validation(model, criterion, val_loader):
+    model.eval()
+    avg_loss = 0
+    with torch.no_grad():
+        for idx, (images, targets) in enumerate(val_loader):
+            outputs = model(images)
+            outputs = f.softmax(outputs, dim=1)
+            loss = criterion(outputs, targets)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            avg_loss += loss
+    avg_loss /= len(val_loader)
+    print(f"Val Loss: {avg_loss}")
+
+
 
 if __name__ == '__main__':
     args = arg_parser.parse_args()
@@ -53,3 +69,4 @@ if __name__ == '__main__':
     for epoch in range(count_epochs):
         print(f"Epoch number {epoch}")
         train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir+"./train"))
+        validation(model, criterion, get_val_loader(data_dir+"./val"))
