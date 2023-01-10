@@ -1,5 +1,5 @@
 from torch import nn
-from modules import Attention, FeedForward, PreNorm
+from vit.modules import Attention, FeedForward, PreNorm
 
 
 class Transformer(nn.Module):

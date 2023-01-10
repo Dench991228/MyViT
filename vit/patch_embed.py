@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from einops.layers.torch import Rearrange
-from utils import trunc_normal_
+from vit.utils import trunc_normal_
 
 
 def pair(t):

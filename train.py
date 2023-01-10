@@ -5,12 +5,11 @@ import torch.nn.functional as f
 
 from loader import get_train_loader, get_val_loader
 from tqdm import tqdm
-from vit.vit import VisionTransformer
-
-
+from vit import VisionTransformer
 arg_parser = argparse.ArgumentParser(description="My Implementation of Vision Transformer")
 # Basic arguments for training
-arg_parser.add_argument('data', metavar='DIR', help="Place your training data and validation data together in one folder")
+arg_parser.add_argument('data', metavar='DIR',
+                        help="Place your training data and validation data together in one folder")
 arg_parser.add_argument('epochs', type=int, default=90, help="Epochs for training")
 # Basic arguments for optimization
 arg_parser.add_argument('lr', type=float, default=0.1, help="Learning rate at start")
@@ -56,7 +55,6 @@ def validation(model, criterion, val_loader):
     print(f"Val Loss: {avg_loss}")
 
 
-
 if __name__ == '__main__':
     args = arg_parser.parse_args()
     count_epochs = args.epochs  # 训练多少个Epoch
@@ -68,5 +66,5 @@ if __name__ == '__main__':
     criterion = torch.nn.CrossEntropyLoss()
     for epoch in range(count_epochs):
         print(f"Epoch number {epoch}")
-        train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir+"./train"))
-        validation(model, criterion, get_val_loader(data_dir+"./val"))
+        train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "./train"))
+        validation(model, criterion, get_val_loader(data_dir + "./val"))
