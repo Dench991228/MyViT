@@ -66,5 +66,5 @@ if __name__ == '__main__':
     criterion = torch.nn.CrossEntropyLoss()
     for epoch in range(count_epochs):
         print(f"Epoch number {epoch}")
-        train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "./train"))
+        train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "/train"))
         validation(model, criterion, get_val_loader(data_dir + "./val"))
