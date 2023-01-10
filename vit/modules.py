@@ -147,5 +147,4 @@ class OutputLayer(nn.Module):
             x = torch.mean(x, dim=1)
         print(x.shape)
         x = self.net(x)
-        x = F.softmax(x, dim=1)
         return x
