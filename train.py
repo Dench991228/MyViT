@@ -45,6 +45,8 @@ def validation(model, criterion, val_loader):
     avg_loss = 0
     with torch.no_grad():
         for idx, (images, targets) in enumerate(val_loader):
+            images = images.to(device)
+            targets = targets.to(device)
             outputs = model(images)
             outputs = f.softmax(outputs, dim=1)
             loss = criterion(outputs, targets)
