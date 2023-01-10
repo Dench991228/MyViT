@@ -36,7 +36,7 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
-        print(loss)
+        print(loss.cpu())
         optimizer.step()
         avg_loss += loss
     avg_loss /= len(train_loader)
