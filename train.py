@@ -61,7 +61,7 @@ if __name__ == '__main__':
     data_dir = args.data  # 数据位置
     learning_rate = args.lr  # 学习率
     momentum = args.momentum  # 动量相关的设置
-    model = VisionTransformer(cls_head=True)  # 召唤一个基础的Vision Transformer，但是要有分类头
+    model = VisionTransformer(cls_head=True, use_conv_stem=False, use_conv_stem_original=False, use_linear_patch=True)  # 召唤一个基础的Vision Transformer，但是要有分类头
     optimizer = torch.optim.SGD(model.parameters(), learning_rate, momentum, weight_decay=weight_decay)
     criterion = torch.nn.CrossEntropyLoss()
     for epoch in range(count_epochs):
