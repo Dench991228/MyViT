@@ -29,6 +29,8 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
     model.train()
     avg_loss = 0
     for idx, (images, targets) in tqdm(enumerate(train_loader)):
+        images = images.to(device)
+        targets = targets.to(device)
         outputs = model(images)
         outputs = f.softmax(outputs, dim=1)
         loss = criterion(outputs, targets)
