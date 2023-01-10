@@ -16,6 +16,7 @@ arg_parser.add_argument('lr', type=float, default=0.1, help="Learning rate at st
 arg_parser.add_argument('momentum', type=float, default=0.9)
 weight_decay = 1e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+log = open("log.txt", 'w')
 
 
 def adjust_learning_rate(optimizer, epoch, args):
@@ -36,7 +37,7 @@ def train_one_epoch(model, optimizer, criterion, train_loader):
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
-        print(f"Batch {idx} loss {float(loss.cpu())}")
+        log.write(f"Batch {idx} loss {float(loss.cpu())}")
         optimizer.step()
         avg_loss += loss
     avg_loss /= len(train_loader)
@@ -75,3 +76,4 @@ if __name__ == '__main__':
         print(f"Epoch number {epoch}")
         train_one_epoch(model, optimizer, criterion, train_loader=get_train_loader(data_dir + "/train"))
         # validation(model, criterion, get_val_loader(data_dir + "./val"))
+    log.close()
