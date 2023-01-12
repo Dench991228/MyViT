@@ -18,7 +18,7 @@ def get_train_loader(train_dir):
         transforms.ToTensor(),
         normalize
     ]))
-    loader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=True, num_workers=4)
+    loader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=True, num_workers=4)
     return loader
 
 
@@ -29,5 +29,5 @@ def get_val_loader(val_dir):
         transforms.ToTensor(),
         normalize
     ]))
-    loader = torch.utils.data.DataLoader(dataset, batch_size=32, num_workers=4, shuffle=False)
+    loader = torch.utils.data.DataLoader(dataset, batch_size=64, num_workers=4, shuffle=False)
     return loader
